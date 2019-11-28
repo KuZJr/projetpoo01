@@ -31,7 +31,7 @@ public class Programme {
 	public static void saisirSalaries() {
 		System.out.println("-------------------------------------------------");
 		System.out.println("Saisir 5 salariés");
-		for (int i=0;i<1;i++) {
+		for (int i=0;i<5;i++) {
 			System.out.println("Salarié n°"+(i+1));
 			System.out.println("Nom :");
 			String nom = sc.nextLine();
@@ -85,7 +85,7 @@ public class Programme {
 	public static void saisirClients() {
 		System.out.println("-------------------------------------------------");
 		System.out.println("Saisir 4 clients");
-		for (int i=0;i<2;i++) {
+		for (int i=0;i<4;i++) {
 			System.out.println("Client n°"+(i+1));
 			System.out.println("Nom :");
 			String nom = sc.nextLine();
@@ -130,7 +130,7 @@ public class Programme {
 	public static void saisirFournisseur() {
 		System.out.println("-------------------------------------------------");
 		System.out.println("Saisir 3 fournisseurs");
-		for (int i=0;i<2;i++) {
+		for (int i=0;i<3;i++) {
 			System.out.println("Fournisseur n°"+(i+1));
 			System.out.println("Nom :");
 			String nom = sc.nextLine();
