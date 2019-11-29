@@ -2,17 +2,17 @@ package projetpoo01.gestionpersonnes;
 
 import java.util.List;
 
+import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 
 public class Fournisseur extends Personne implements IClient,IFournisseur {
 	private String numFournisseur;
-	private boolean client;
-	private boolean fournisseur;
 
-	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String numfournisseur) {
+	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String numfournisseur, boolean nclient) {
 		super(nom, prenom, adresse, ville, codepostal);
 		this.numFournisseur = numfournisseur;
+		client = nclient;
 	}
 	
 
@@ -24,27 +24,6 @@ public class Fournisseur extends Personne implements IClient,IFournisseur {
 	public void setNumFournisseur(String numFournisseur) {
 		this.numFournisseur = numFournisseur;
 	}
-	
-
-	public boolean isClient() {
-		return client;
-	}
-
-
-	public void setClient(boolean client) {
-		this.client = client;
-	}
-	
-
-	public boolean isFournisseur() {
-		return fournisseur;
-	}
-
-
-	public void setFournisseur(boolean fournisseur) {
-		this.fournisseur = fournisseur;
-	}
-
 
 	@Override
 	public void acheter(List<Achat> a) {
@@ -75,14 +54,29 @@ public class Fournisseur extends Personne implements IClient,IFournisseur {
 
 	@Override
 	public boolean estClient() {
-		return isClient();
+		return client;
 	}
 
 
 	@Override
 	public boolean estFournisseur() {
-		// TODO Auto-generated method stub
-		return isFournisseur();
+		return true;
+	}
+	
+	public static void verifNumFour(List<String> numclientList, List<Personne> lp, String numclient)  throws ErreurSaisie {
+		if (!lp.isEmpty()) {
+			for (Personne p:lp) {
+				if (p instanceof IFournisseur) {
+					Fournisseur c = (Fournisseur) p;
+					if (!numclientList.contains(numclient))
+						numclientList.add(c.getNumFournisseur());
+				}
+			}
+			
+			if (numclientList.contains(numclient)) {
+				throw new ErreurSaisie("Ce numéro existe déjà ! Réinsérez :");
+			}
+		}
 	}
 
 }

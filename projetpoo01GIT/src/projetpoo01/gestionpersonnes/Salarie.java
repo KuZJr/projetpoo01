@@ -2,17 +2,18 @@ package projetpoo01.gestionpersonnes;
 
 import java.util.List;
 
+import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 
 public class Salarie extends Personne implements IClient {
 	private String numSecu;
 	private String salaire;
-	private boolean client;
 	
-	public Salarie(String nom, String prenom, String adresse, String ville, String codepostal, String numsecu, String salaire) {
+	public Salarie(String nom, String prenom, String adresse, String ville, String codepostal, String numsecu, String salaire, boolean nclient) {
 		super(nom, prenom, adresse, ville, codepostal);
 		this.numSecu = numsecu;
 		this.salaire = salaire;
+		client = nclient;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -69,6 +70,18 @@ public class Salarie extends Personne implements IClient {
 	public boolean estClient() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public static void verifNumSecu(String secu) throws ErreurSaisie {
+		if (!secu.matches("\\d{13}")) {
+			throw new ErreurSaisie("Mauvais format ! Réinsérez : ");
+		}
+	}
+	
+	public static void verifSalaire(String salaire) throws ErreurSaisie {
+		if (!salaire.matches("\\d{1,9}+\\.\\d{2}€")) {
+			throw new ErreurSaisie("Mauvais format ! Réinsérez : ");
+		}
 	}
 
 }

@@ -2,17 +2,18 @@ package projetpoo01.gestionpersonnes;
 
 import java.util.List;
 
+import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 
 public class Client extends Personne implements IFournisseur, IClient {
 	private String numClient;
-	private boolean client;
-	private boolean fournisseur;
 
-	public Client(String nom, String prenom, String adresse, String ville, String codepostal, String numclient) {
+	public Client(String nom, String prenom, String adresse, String ville, String codepostal, String numclient, boolean nfournisseur) {
 		super(nom, prenom, adresse, ville, codepostal);
 		this.numClient = numclient;
+		client = true;
+		fournisseur = nfournisseur;
 	}
 		
 
@@ -23,25 +24,6 @@ public class Client extends Personne implements IFournisseur, IClient {
 
 	public void setNumClient(String numClient) {
 		this.numClient = numClient;
-	}
-
-	public boolean isClient() {
-		return client;
-	}
-
-
-	public void setClient(boolean client) {
-		this.client = client;
-	}
-	
-
-	public boolean isFournisseur() {
-		return fournisseur;
-	}
-
-
-	public void setFournisseur(boolean fournisseur) {
-		this.fournisseur = fournisseur;
 	}
 
 
@@ -59,8 +41,10 @@ public class Client extends Personne implements IFournisseur, IClient {
 
 	@Override
 	public void acheter(List<Achat> a) {
-		// TODO Auto-generated method stub
-		System.out.println("Client achète");
+		System.out.println("Le client achète les éléments suivants :");
+		for (Achat achat:a) {
+			System.out.println(achat.toString());
+		}
 	}
 
 	@Override
@@ -76,13 +60,27 @@ public class Client extends Personne implements IFournisseur, IClient {
 
 	@Override
 	public boolean estClient() {
-		return isClient();
+		return true;
 	}
-
-
+	
 	@Override
 	public boolean estFournisseur() {
-		// TODO Auto-generated method stub
-		return isFournisseur();
+		return fournisseur;
+	}
+	
+	public static void verifNumClient(List<String> numclientList, List<Personne> lp, String numclient)  throws ErreurSaisie {
+		if (!lp.isEmpty()) {
+			for (Personne p:lp) {
+				if (p instanceof IClient) {
+					Client c = (Client) p;
+					if (!numclientList.contains(numclient))
+						numclientList.add(c.getNumClient());
+				}
+			}
+			
+			if (numclientList.contains(numclient)) {
+				throw new ErreurSaisie("Ce numéro existe déjà ! Réinsérez :");
+			}
+		}
 	}
 }

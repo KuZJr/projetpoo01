@@ -1,11 +1,18 @@
 package projetpoo01.gestionpersonnes;
 
-public class Personne {
+import java.util.List;
+
+import projetpoo01.gestionachats.Achat;
+import projetpoo01.gestionachats.Commande;
+
+public class Personne implements IClient, IFournisseur {
 	private String nom;
 	private String prenom;
 	private String adresse;
 	private String ville;
 	private String codepostal;
+	protected boolean client;
+	protected boolean fournisseur;
 
 	public Personne(String nom, String prenom, String adresse, String ville, String codepostal) {
 		super();
@@ -60,6 +67,42 @@ public class Personne {
 
 	public void setCodepostal(String codepostal) {
 		this.codepostal = codepostal;
+	}
+
+	@Override
+	public void commander(List<Commande> c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean livrer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean estFournisseur() {
+		// TODO Auto-generated method stub
+		return fournisseur;
+	}
+
+	@Override
+	public void acheter(List<Achat> a) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean payer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean estClient() {
+		// TODO Auto-generated method stub
+		return client;
 	}
 	
 	
