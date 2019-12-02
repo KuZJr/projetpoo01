@@ -14,7 +14,7 @@ import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 import projetpoo01.gestionpersonnes.Client;
 import projetpoo01.gestionpersonnes.Fournisseur;
-
+//Un commentaire
 public class Programme {
 	static List<Personne> lp = new ArrayList<Personne>();
 	static Scanner sc = new Scanner(System.in);
