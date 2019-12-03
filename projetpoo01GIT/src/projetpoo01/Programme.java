@@ -1,21 +1,24 @@
 package projetpoo01;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import projetpoo01.gestionpersonnes.IClient;
-import projetpoo01.gestionpersonnes.Patron;
-import projetpoo01.gestionpersonnes.Personne;
-import projetpoo01.gestionpersonnes.Salarie;
 import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 import projetpoo01.gestionpersonnes.Client;
 import projetpoo01.gestionpersonnes.Fournisseur;
-//Un commentaire
-public class Programme {
+import projetpoo01.gestionpersonnes.IClient;
+import projetpoo01.gestionpersonnes.Patron;
+import projetpoo01.gestionpersonnes.Personne;
+import projetpoo01.gestionpersonnes.Salarie;
+
+public class Programme implements Serializable {
+	private static final long serialVersionUID = 1L;
 	static List<Personne> lp = new ArrayList<Personne>();
 	static Scanner sc = new Scanner(System.in);
 	static Patron patron;
@@ -117,10 +120,10 @@ public class Programme {
 			
 			do {
 				action = sc.nextLine();
-				if (!action.equals("1") && !action.equals("2") && !action.equals("")) {
+				if (!action.equals("1") && !action.equals("2") && !action.equals("3") && !action.equals("")) {
 					System.out.println("Entrez une action valide !");
 				}
-			} while (!action.equals("1") && !action.equals("2") && !action.equals(""));
+			} while (!action.equals("1") && !action.equals("2") && !action.equals("3") && !action.equals(""));
 			
 			switch (action) {
 			case "1":
@@ -204,12 +207,13 @@ public class Programme {
 		List<Achat> achats = new ArrayList<Achat>();
 		erreursaisie = true;
 		for (int i=0;i<nbAchats;i++) {
-			System.out.println("Date d'achat :");
+			System.out.println("Date d'achat (dd-MM-yyyy) :");
 			String date = null;
+			Date nDate = null;
 			while (erreursaisie) {
 				date = sc.nextLine();
 				try {
-					Programme.verifDate(date);
+					nDate = Programme.verifDate(date);
 					erreursaisie = false;
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -220,10 +224,11 @@ public class Programme {
 			System.out.println("Quantité :");
 			String quantite = sc.nextLine();
 			
-			Achat achat = new Achat(date, intitule, quantite);
+			Achat achat = new Achat(nDate, intitule, quantite);
 			achats.add(achat);
 		}
 		c.acheter(achats);
+		c.setAchats(achats);
 	}
 	
 	private static void saisirCommandesFournisseur(Fournisseur f) {
@@ -242,12 +247,13 @@ public class Programme {
 		List<Commande> commandes = new ArrayList<Commande>();
 		erreursaisie = true;
 		for (int i=0;i<nbCommandes;i++) {
-			System.out.println("Date d'achat (dd-MM-yyyy) :");
+			System.out.println("Date de commande (dd-MM-yyyy) :");
 			String date = null;
+			Date nDate = null;
 			while (erreursaisie) {
 				date = sc.nextLine();
 				try {
-					Programme.verifDate(date);
+					nDate = Programme.verifDate(date);
 					erreursaisie = true;
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -259,10 +265,11 @@ public class Programme {
 			System.out.println("Quantité :");
 			String quantite = sc.nextLine();
 			
-			Commande commande = new Commande(date, intitule, quantite);
+			Commande commande = new Commande(nDate, intitule, quantite);
 			commandes.add(commande);
 		}
 		f.commander(commandes);
+		f.setCommandes(commandes);
 	}
 
 	public static void gererclient(IClient client) {
@@ -541,12 +548,13 @@ public class Programme {
 	}
 	
 
-	private static void verifDate(String date) throws ErreurSaisie {
+	private static Date verifDate(String date) throws ErreurSaisie {
 		SimpleDateFormat format = new SimpleDateFormat();
 		format.applyPattern("dd/MM/yyyy");
 		format.setLenient(false);
 		try {
-			format.parse(date);
+			Date nDate = format.parse(date);
+			return nDate;
 		} catch (Exception e) {
 			throw new ErreurSaisie("Mauvais format de date ! Réinsérez :");
 		}

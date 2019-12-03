@@ -12,7 +12,9 @@ public class Personne implements IClient, IFournisseur {
 	private String ville;
 	private String codepostal;
 	protected boolean client;
+	private List<Achat> achats;
 	protected boolean fournisseur;
+	private List<Commande> commandes;
 
 	public Personne(String nom, String prenom, String adresse, String ville, String codepostal) {
 		super();
@@ -67,6 +69,22 @@ public class Personne implements IClient, IFournisseur {
 
 	public void setCodepostal(String codepostal) {
 		this.codepostal = codepostal;
+	}
+
+	public List<Achat> getAchats() {
+		return achats;
+	}
+
+	public void setAchats(List<Achat> achats) {
+		this.achats = achats;
+	}
+
+	public List<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(List<Commande> commandes) {
+		this.commandes = commandes;
 	}
 
 	@Override

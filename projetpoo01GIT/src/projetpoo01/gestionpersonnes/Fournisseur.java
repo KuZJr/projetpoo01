@@ -6,7 +6,7 @@ import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 
-public class Fournisseur extends Personne implements IClient,IFournisseur {
+public class Fournisseur extends Personne implements IClient, IFournisseur {
 	private String numFournisseur;
 
 	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String numfournisseur, boolean nclient) {
@@ -67,9 +67,11 @@ public class Fournisseur extends Personne implements IClient,IFournisseur {
 		if (!lp.isEmpty()) {
 			for (Personne p:lp) {
 				if (p instanceof IFournisseur) {
-					Fournisseur c = (Fournisseur) p;
-					if (!numclientList.contains(numclient))
-						numclientList.add(c.getNumFournisseur());
+					if (p.estFournisseur()) {
+						Fournisseur c = (Fournisseur) p;
+						if (!numclientList.contains(numclient))
+							numclientList.add(c.getNumFournisseur());
+					}
 				}
 			}
 			

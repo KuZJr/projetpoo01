@@ -1,22 +1,24 @@
 package projetpoo01.gestionachats;
 
+import java.util.Date;
+
 public class Achat {
-	private String date;
+	private Date date;
 	private String intitule;
 	private String quantite;
 	
-	public Achat(String date, String intitule, String quantite) {
+	public Achat(Date date, String intitule, String quantite) {
 		super();
 		this.date = date;
 		this.intitule = intitule;
 		this.quantite = quantite;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	

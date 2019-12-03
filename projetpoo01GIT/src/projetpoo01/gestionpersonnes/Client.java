@@ -72,9 +72,11 @@ public class Client extends Personne implements IFournisseur, IClient {
 		if (!lp.isEmpty()) {
 			for (Personne p:lp) {
 				if (p instanceof IClient) {
-					Client c = (Client) p;
-					if (!numclientList.contains(numclient))
-						numclientList.add(c.getNumClient());
+					if (p.estClient()) {
+						Client c = (Client) p;
+						if (!numclientList.contains(numclient))
+							numclientList.add(c.getNumClient());
+					}
 				}
 			}
 			
