@@ -1,11 +1,13 @@
 package projetpoo01.gestionpersonnes;
 
+import java.io.Serializable;
 import java.util.List;
 
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 
-public class Personne implements IClient, IFournisseur {
+public class Personne implements IClient, IFournisseur, Serializable {
+	private static final long serialVersionUID = 1L;
 	private String nom;
 	private String prenom;
 	private String adresse;
@@ -24,12 +26,15 @@ public class Personne implements IClient, IFournisseur {
 		this.ville = ville;
 		this.codepostal = codepostal;
 	}
+	
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName()+" [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", ville=" + ville
-				+ ", codepostal=" + codepostal + "]";
+		return "Personne [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", ville=" + ville
+				+ ", codepostal=" + codepostal + ", client=" + client + ", achats=" + achats + ", fournisseur="
+				+ fournisseur + ", commandes=" + commandes + "]";
 	}
+
 
 	public String getNom() {
 		return nom;

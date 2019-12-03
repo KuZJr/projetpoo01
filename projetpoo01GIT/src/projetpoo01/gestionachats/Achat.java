@@ -1,8 +1,10 @@
 package projetpoo01.gestionachats;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Achat {
+public class Achat implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Date date;
 	private String intitule;
 	private String quantite;

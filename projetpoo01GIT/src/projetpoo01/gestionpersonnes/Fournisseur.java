@@ -7,6 +7,7 @@ import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 
 public class Fournisseur extends Personne implements IClient, IFournisseur {
+	private static final long serialVersionUID = 1L;
 	private String numFournisseur;
 
 	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String numfournisseur, boolean nclient) {

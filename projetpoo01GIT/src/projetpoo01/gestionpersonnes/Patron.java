@@ -1,6 +1,7 @@
 package projetpoo01.gestionpersonnes;
 
 public class Patron extends Salarie implements IPatron {
+	private static final long serialVersionUID = 1L;
 
 	public Patron(String nom, String prenom, String adresse, String ville, String codepostal, String numsecu,
 			String salaire, boolean nclient) {

@@ -6,6 +6,7 @@ import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 
 public class Salarie extends Personne implements IClient {
+	private static final long serialVersionUID = 1L;
 	private String numSecu;
 	private String salaire;
 	

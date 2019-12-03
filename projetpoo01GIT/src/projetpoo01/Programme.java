@@ -1,6 +1,11 @@
 package projetpoo01;
 
-import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,15 +22,38 @@ import projetpoo01.gestionpersonnes.Patron;
 import projetpoo01.gestionpersonnes.Personne;
 import projetpoo01.gestionpersonnes.Salarie;
 
-public class Programme implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Programme {
 	static List<Personne> lp = new ArrayList<Personne>();
 	static Scanner sc = new Scanner(System.in);
 	static Patron patron;
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
+		try {
+			FileInputStream fis = new FileInputStream("lpers.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			lp = (ArrayList<Personne>)ois.readObject();
+			ois.close();
+		} catch (IOException e) {
+			System.out.println("Création d'un fichier de sauvegarde...");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		Programme.menuPrincipal();
 		sc.close();
+		
+		try {
+			FileOutputStream fos = new FileOutputStream("lpers.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(lp);
+			oos.flush();
+			oos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void menuPrincipal() {
@@ -139,7 +167,7 @@ public class Programme implements Serializable {
 				break;
 				
 			case "":
-				Programme.menuSaisie();
+				Programme.menuPrincipal();
 				break;
 			}
 		} while (!action.equals(""));
@@ -153,16 +181,18 @@ public class Programme implements Serializable {
 			System.out.println("-------------------------------------------------");
 			System.out.println("Sélectionnez un client en saisissant son numéro client :");
 			Programme.afficherClients();
-			System.out.println("Appuyez sur Entrée pour revenir en arrière :");
+			System.out.println("Appuyez sur Entrée pour revenir en arrière.");
 			action = sc.nextLine();
 			if (action.equals("")) {
 				Programme.menuAfficher();
 			}
 			
 			for (Personne p:lp) {
-				Client c = (Client) p;
-				if (c.getNumClient().equals(action)) {
-					Programme.saisirAchatsClient(c);
+				if (p.estClient()) {
+					Client c = (Client) p;
+					if (c.getNumClient().equals(action)) {
+						Programme.saisirAchatsClient(c);
+					}
 				}
 			}
 		} while (!action.equals(""));
@@ -172,9 +202,9 @@ public class Programme implements Serializable {
 		String action = null;
 		do {
 			System.out.println("-------------------------------------------------");
-			System.out.println("Menu Sélection Client");
+			System.out.println("Menu Sélection Fournisseur");
 			System.out.println("-------------------------------------------------");
-			System.out.println("Sélectionnez un client en saisissant son numéro client :");
+			System.out.println("Sélectionnez un fournisseur en saisissant son numéro fournisseur :");
 			Programme.afficherFourn();
 			System.out.println("Appuyez sur Entrée pour revenir en arrière :");
 			action = sc.nextLine();
@@ -183,9 +213,11 @@ public class Programme implements Serializable {
 			}
 			
 			for (Personne p:lp) {
-				Fournisseur f = (Fournisseur) p;
-				if (f.getNumFournisseur().equals(action)) {
-					Programme.saisirCommandesFournisseur(f);
+				if (p.estFournisseur()) {
+					Fournisseur f = (Fournisseur) p;
+					if (f.getNumFournisseur().equals(action)) {
+						Programme.saisirCommandesFournisseur(f);
+					}
 				}
 			}
 		} while (!action.equals(""));
