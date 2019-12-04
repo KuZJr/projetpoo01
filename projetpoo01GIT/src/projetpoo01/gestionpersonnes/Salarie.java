@@ -15,7 +15,6 @@ public class Salarie extends Personne implements IClient {
 		this.numSecu = numsecu;
 		this.salaire = salaire;
 		client = nclient;
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -57,19 +56,16 @@ public class Salarie extends Personne implements IClient {
 
 	@Override
 	public void acheter(List<Achat> a) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean payer() {
 		return false;
-
 	}
 
 	@Override
 	public boolean estClient() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
