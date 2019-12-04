@@ -567,7 +567,7 @@ public class Programme {
 		}
 	}
 	
-	private static boolean verifReponse(String reponse) throws ErreurSaisie {
+	public static boolean verifReponse(String reponse) throws ErreurSaisie {
 		if (reponse.equals("oui")) {
 			return true;
 		}
@@ -580,7 +580,7 @@ public class Programme {
 	}
 	
 
-	private static Date verifDate(String date) throws ErreurSaisie {
+	public static Date verifDate(String date) throws ErreurSaisie {
 		SimpleDateFormat format = new SimpleDateFormat();
 		format.applyPattern("dd/MM/yyyy");
 		format.setLenient(false);
