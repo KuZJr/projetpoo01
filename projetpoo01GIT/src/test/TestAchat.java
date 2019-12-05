@@ -1,69 +1,44 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
-import java.util.Date;
-
-import org.junit.Before;
 import org.junit.Test;
 
-import projetpoo01.gestionachats.Achat;
-
 public class TestAchat {
-	private Achat oa;
-	private final Date odate = new Date();
-	private final String ointitule = "Chaise";
-	private final String oquantite = "3";
-	
-	private final Date setdate = new Date(1515115151);
-	private final String setintitule = "";
-	private final String setquantite = "";
-	
-	@Before
-	public void init() {
-		oa = new Achat(odate, ointitule, oquantite);
-	}
 
 	@Test
 	public void testAchat() {
-		assertNotNull(oa);
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetDate() {
-		assertEquals(odate, oa.getDate());
-		this.testSetDate();
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetDate() {
-		oa.setDate(setdate);
-		assertEquals(setdate, oa.getDate());
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetIntitule() {
-		assertEquals(ointitule, oa.getIntitule());
-		this.testSetIntitule();
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetIntitule() {
-		oa.setIntitule(setintitule);
-		assertEquals(setintitule, oa.getIntitule());
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetQuantite() {
-		assertEquals(oquantite, oa.getQuantite());
-		this.testSetQuantite();
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetQuantite() {
-		oa.setQuantite(setquantite);
-		assertEquals(setquantite, oa.getQuantite());
+		fail("Not yet implemented");
 	}
 
 }
