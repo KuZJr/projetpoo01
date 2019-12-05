@@ -1,3 +1,10 @@
+/**
+ * Classe comportant les mÃ©thodes d'affichage des menus du programme.
+ * 
+ * @version 1.0
+ * 
+ * @author GALLAND Maxence
+ */
 package projetpoo01.affichages;
 
 import java.util.List;
@@ -11,17 +18,19 @@ import projetpoo01.saisies.Saisie;
 public class Menu {
 	public static List<Personne> lp = null;
 	public static Scanner sc = null;
-	
+	/**
+	 * MÃ©thode d'affichage du menu principal du programme.
+	 */
 	public static void menuPrincipal() {
 		String action = null;
 		do {
 			System.out.println("-------------------------------------------------");
 			System.out.println("Menu principal");
 			System.out.println("-------------------------------------------------");
-			System.out.println("Sélectionnez une action");
+			System.out.println("Sï¿½lectionnez une action");
 			System.out.println("\t 1. Saisir des personnes");
 			System.out.println("\t 2. Afficher les personnes saisies");
-			System.out.println("Appuyez sur Entrée pour quitter.");
+			System.out.println("Appuyez sur Entrï¿½e pour quitter.");
 			
 			do {
 				action = sc.nextLine();
@@ -45,19 +54,21 @@ public class Menu {
 			
 		} while (!action.equals(""));
 	}
-	
+	/**
+	 * MÃ©thode d'affichage du menu de sÃ©lection de saisie de personnes.
+	 */
 	public static void menuSaisie() {
 		String action = null;
 		do {
 			System.out.println("-------------------------------------------------");
 			System.out.println("Menu Saisie");
 			System.out.println("-------------------------------------------------");
-			System.out.println("Sélectionnez une action");
-			System.out.println("\t 1. Saisir des salariés");
+			System.out.println("Sï¿½lectionnez une action");
+			System.out.println("\t 1. Saisir des salariï¿½s");
 			System.out.println("\t 2. Saisir des clients");
 			System.out.println("\t 3. Saisir des fournisseurs");
 			System.out.println("\t 4. Saisir un patron");
-			System.out.println("Appuyez sur Entrée pour revenir en arrière.");
+			System.out.println("Appuyez sur Entrï¿½e pour revenir en arriï¿½re.");
 			
 			do {
 				action = sc.nextLine();
@@ -89,18 +100,20 @@ public class Menu {
 			}
 		} while (!action.equals(""));
 	}
-	
+	/**
+	 * MÃ©thode d'affichage du menu de sÃ©lection d'affichage des personnes.
+	 */
 	public static void menuAfficher() {
 		String action = null;
 		do {
 			System.out.println("-------------------------------------------------");
 			System.out.println("Menu Afficher");
 			System.out.println("-------------------------------------------------");
-			System.out.println("Sélectionnez une action");
+			System.out.println("Sï¿½lectionnez une action");
 			System.out.println("\t 1. Choisir un client");
 			System.out.println("\t 2. Choisir un fournisseur");
 			System.out.println("\t 3. Afficher toutes les personnes saisies");
-			System.out.println("Appuyez sur Entrée pour revenir en arrière.");
+			System.out.println("Appuyez sur Entrï¿½e pour revenir en arriï¿½re.");
 			
 			do {
 				action = sc.nextLine();
@@ -119,7 +132,7 @@ public class Menu {
 				break;
 				
 			case "3":
-				Affichage.afficherPersonnes(lp);
+				Affichage.afficherPersonnes();
 				break;
 				
 			case "":
@@ -128,16 +141,18 @@ public class Menu {
 			}
 		} while (!action.equals(""));
 	}
-	
+	/**
+	 * MÃ©thode d'affichage du menu de sÃ©lection client.
+	 */
 	private static void choisirClient() {
 		String action = null;
 		do {
 			System.out.println("-------------------------------------------------");
-			System.out.println("Menu Sélection Client");
+			System.out.println("Menu Sï¿½lection Client");
 			System.out.println("-------------------------------------------------");
-			System.out.println("Sélectionnez un client en saisissant son numéro client :");
+			System.out.println("Sï¿½lectionnez un client en saisissant son numï¿½ro client :");
 			Affichage.afficherClients();
-			System.out.println("Appuyez sur Entrée pour revenir en arrière.");
+			System.out.println("Appuyez sur Entrï¿½e pour revenir en arriï¿½re.");
 			action = sc.nextLine();
 			if (action.equals("")) {
 				menuAfficher();
@@ -153,16 +168,18 @@ public class Menu {
 			}
 		} while (!action.equals(""));
 	}
-	
+	/**
+	 * MÃ©thode d'affichage du menu de sÃ©lection fournisseur.
+	 */
 	private static void choisirFourn() {
 		String action = null;
 		do {
 			System.out.println("-------------------------------------------------");
-			System.out.println("Menu Sélection Fournisseur");
+			System.out.println("Menu Sï¿½lection Fournisseur");
 			System.out.println("-------------------------------------------------");
-			System.out.println("Sélectionnez un fournisseur en saisissant son numéro fournisseur :");
+			System.out.println("Sï¿½lectionnez un fournisseur en saisissant son numï¿½ro fournisseur :");
 			Affichage.afficherFourn();
-			System.out.println("Appuyez sur Entrée pour revenir en arrière :");
+			System.out.println("Appuyez sur Entrï¿½e pour revenir en arriï¿½re :");
 			action = sc.nextLine();
 			if (action.equals("")) {
 				menuAfficher();

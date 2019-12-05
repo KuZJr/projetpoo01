@@ -1,3 +1,10 @@
+/**
+ * Classe principale du programme
+ * 
+ * @version 1.0
+ * 
+ * @author GALLAND Maxence
+ */
 package projetpoo01;
 
 import java.io.FileInputStream;
@@ -20,7 +27,9 @@ public class Programme {
 	static List<Personne> lp = new ArrayList<Personne>();
 	static Scanner sc = new Scanner(System.in);
 	static Patron patron;
-	
+	/**
+	 * Programme principal.
+	 */
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		Menu.lp = lp;
@@ -33,7 +42,7 @@ public class Programme {
 			lp = (ArrayList<Personne>)ois.readObject();
 			ois.close();
 		} catch (IOException e) {
-			System.out.println("Création d'un fichier de sauvegarde...");
+			System.out.println("Crï¿½ation d'un fichier de sauvegarde...");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

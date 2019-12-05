@@ -1,3 +1,10 @@
+/**
+ * Classe de gestion des achats
+ * 
+ * @version 1.0
+ * 
+ * @author GALLAND Maxence
+ */
 package projetpoo01.gestionachats;
 
 import java.io.Serializable;
@@ -42,7 +49,7 @@ public class Achat implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Achat [Date=" + getDate() + ", Intitulé=" + getIntitule() + ", Quantité=" + getQuantite()
+		return "Achat [Date=" + getDate() + ", Intitulï¿½=" + getIntitule() + ", Quantitï¿½=" + getQuantite()
 				+ "]";
 	}
 	

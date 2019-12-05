@@ -1,3 +1,10 @@
+/**
+ * Classe principale du programme
+ * 
+ * @version 1.0
+ * 
+ * @author GALLAND Maxence
+ */
 package projetpoo01.gestionpersonnes;
 
 import java.io.Serializable;
@@ -5,14 +12,6 @@ import java.util.List;
 
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
-
-/**
- * 
- * @author GALLAND Maxence
- * @version 1.0
- * <br/><b> Java Doc projet POO 01 </b>
- *
- */
 
 public class Personne implements IClient, IFournisseur, Serializable {
 	private static final long serialVersionUID = 1L;
