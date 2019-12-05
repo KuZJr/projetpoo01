@@ -6,6 +6,14 @@ import java.util.List;
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
 
+/**
+ * 
+ * @author GALLAND Maxence
+ * @version 1.0
+ * <br/><b> Java Doc projet POO 01 </b>
+ *
+ */
+
 public class Personne implements IClient, IFournisseur, Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nom;
@@ -18,6 +26,14 @@ public class Personne implements IClient, IFournisseur, Serializable {
 	protected boolean fournisseur;
 	private List<Commande> commandes;
 
+	/**
+	 * 
+	 * @param nom
+	 * @param prenom
+	 * @param adresse
+	 * @param ville
+	 * @param codepostal
+	 */
 	public Personne(String nom, String prenom, String adresse, String ville, String codepostal) {
 		super();
 		this.nom = nom;
