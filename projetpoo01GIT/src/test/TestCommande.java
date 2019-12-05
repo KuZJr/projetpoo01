@@ -8,10 +8,10 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import projetpoo01.gestionachats.Achat;
+import projetpoo01.gestionachats.Commande;
 
-public class TestAchat {
-	private Achat oa;
+public class TestCommande {
+	private Commande oc;
 	private final Date odate = new Date();
 	private final String ointitule = "Chaise";
 	private final String oquantite = "3";
@@ -22,48 +22,48 @@ public class TestAchat {
 	
 	@Before
 	public void init() {
-		oa = new Achat(odate, ointitule, oquantite);
+		oc = new Commande(odate, ointitule, oquantite);
 	}
 
 	@Test
 	public void testAchat() {
-		assertNotNull(oa);
+		assertNotNull(oc);
 	}
 
 	@Test
 	public void testGetDate() {
-		assertEquals(odate, oa.getDate());
+		assertEquals(odate, oc.getDate());
 		this.testSetDate();
 	}
 
 	@Test
 	public void testSetDate() {
-		oa.setDate(setdate);
-		assertEquals(setdate, oa.getDate());
+		oc.setDate(setdate);
+		assertEquals(setdate, oc.getDate());
 	}
 
 	@Test
 	public void testGetIntitule() {
-		assertEquals(ointitule, oa.getIntitule());
+		assertEquals(ointitule, oc.getIntitule());
 		this.testSetIntitule();
 	}
 
 	@Test
 	public void testSetIntitule() {
-		oa.setIntitule(setintitule);
-		assertEquals(setintitule, oa.getIntitule());
+		oc.setIntitule(setintitule);
+		assertEquals(setintitule, oc.getIntitule());
 	}
 
 	@Test
 	public void testGetQuantite() {
-		assertEquals(oquantite, oa.getQuantite());
+		assertEquals(oquantite, oc.getQuantite());
 		this.testSetQuantite();
 	}
 
 	@Test
 	public void testSetQuantite() {
-		oa.setQuantite(setquantite);
-		assertEquals(setquantite, oa.getQuantite());
+		oc.setQuantite(setquantite);
+		assertEquals(setquantite, oc.getQuantite());
 	}
 
 }
