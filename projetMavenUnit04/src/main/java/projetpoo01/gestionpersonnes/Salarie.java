@@ -18,6 +18,11 @@ public class Salarie extends Personne implements IClient {
 	}
 
 
+	public Salarie() {
+		this("", "", "", "", "", "", "", false);
+	}
+
+
 	public String getNumSecu() {
 		return numSecu;
 	}
@@ -71,13 +76,13 @@ public class Salarie extends Personne implements IClient {
 	
 	public static void verifNumSecu(String secu) throws ErreurSaisie {
 		if (!secu.matches("\\d{13}")) {
-			throw new ErreurSaisie("Mauvais format ! Réinsérez : ");
+			throw new ErreurSaisie("Mauvais format ! Rï¿½insï¿½rez : ");
 		}
 	}
 	
 	public static void verifSalaire(String salaire) throws ErreurSaisie {
-		if (!salaire.matches("\\d{1,9}+\\.\\d{2}€")) {
-			throw new ErreurSaisie("Mauvais format ! Réinsérez : ");
+		if (!salaire.matches("\\d{1,9}+\\.\\d{2}ï¿½")) {
+			throw new ErreurSaisie("Mauvais format ! Rï¿½insï¿½rez : ");
 		}
 	}
 

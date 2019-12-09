@@ -45,7 +45,7 @@ public class Personne implements IClient, IFournisseur, Serializable {
 
 	@Override
 	public String toString() {
-		return "Personne [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", ville=" + ville
+		return this.getClass().getSimpleName() + " [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", ville=" + ville
 				+ ", codepostal=" + codepostal + ", client=" + client + ", achats=" + achats + ", fournisseur="
 				+ fournisseur + ", commandes=" + commandes + "]";
 	}

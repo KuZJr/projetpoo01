@@ -2,9 +2,12 @@ package projetpoo01.saisies;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
+import projetpoo01.affichages.Menu;
 import projetpoo01.exceptions.ErreurSaisie;
 import projetpoo01.gestionachats.Achat;
 import projetpoo01.gestionachats.Commande;
@@ -18,6 +21,19 @@ public class Saisie {
 	public static List<Personne> lp = null;
 	public static Scanner sc = null;
 	public static Patron patron = null;
+	public static String string = null;
+	
+	public static void saisirPersonne(Personne p) {
+		Map<String, ISaisie> map = new HashMap<String, ISaisie>();
+		
+		map.put("Nom :",         (nom)     -> { nom = Menu.sc.nextLine();     p.setNom(nom);         });
+		map.put("PrÃ©nom :",      (prenom)  -> { prenom = Menu.sc.nextLine();  p.setPrenom(prenom);   });
+		map.put("Adresse :",     (adresse) -> { adresse = Menu.sc.nextLine(); p.setAdresse(adresse); });
+		map.put("Ville :",       (ville)   -> { ville = Menu.sc.nextLine();   p.setVille(ville);     });
+		map.put("Code postal :", (cp)      -> { cp = Menu.sc.nextLine();      p.setCodepostal(cp);   });
+		
+		map.entrySet().stream().forEach(s -> { System.out.println(s.getKey()); s.getValue().set(string); });
+	}
 	
 	public static void saisirAchatsClient(Client c) {
 		System.out.println("-------------------------------------------------");
@@ -47,9 +63,9 @@ public class Saisie {
 					System.out.println(e.getMessage());
 				}
 			}
-			System.out.println("Intitulé :");
+			System.out.println("Intitulï¿½ :");
 			String intitule = sc.nextLine();
-			System.out.println("Quantité :");
+			System.out.println("Quantitï¿½ :");
 			String quantite = sc.nextLine();
 			
 			Achat achat = new Achat(nDate, intitule, quantite);
@@ -88,9 +104,9 @@ public class Saisie {
 				}
 			}
 			
-			System.out.println("Intitulé :");
+			System.out.println("Intitulï¿½ :");
 			String intitule = sc.nextLine();
-			System.out.println("Quantité :");
+			System.out.println("Quantitï¿½ :");
 			String quantite = sc.nextLine();
 			
 			Commande commande = new Commande(nDate, intitule, quantite);
@@ -101,11 +117,12 @@ public class Saisie {
 	}
 	
 	public static void saisirSalaries() {
+		/*
 		System.out.println("-------------------------------------------------");
-		System.out.println("Combien de salariés voulez-vous saisir ?");
-		int nbSalaries = 0;
+		System.out.println("Combien de salariï¿½s voulez-vous saisir ?");
+		int nbSalaries = 0;*/
 		boolean erreursaisie = true;
-		while (erreursaisie) {
+		/*while (erreursaisie) {
 			try {
 				nbSalaries = sc.nextInt(); sc.nextLine();
 				erreursaisie = false;
@@ -115,10 +132,10 @@ public class Saisie {
 		}
 		
 		for (int i=0;i<nbSalaries;i++) {
-			System.out.println("Salarié n°"+(i+1));
+			System.out.println("Salariï¿½ nï¿½"+(i+1));
 			System.out.println("Nom :");
 			String nom = sc.nextLine();
-			System.out.println("Prénom :");
+			System.out.println("Prï¿½nom :");
 			String prenom = sc.nextLine();
 			System.out.println("Adresse :");
 			String adresse = sc.nextLine();
@@ -126,7 +143,10 @@ public class Saisie {
 			String ville = sc.nextLine();
 			System.out.println("Code postal :");
 			String codepostal = sc.nextLine();
-			System.out.println("Numéro de Sécurité Sociale (13 chiffres) :");
+			*/
+			Salarie salarie = new Salarie();
+			saisirPersonne(salarie);
+			System.out.println("Numï¿½ro de Sï¿½curitï¿½ Sociale (13 chiffres) :");
 			erreursaisie = true;
 			String secu = null;
 			while (erreursaisie) {
@@ -137,8 +157,9 @@ public class Saisie {
 				} catch (ErreurSaisie e) {
 					System.out.println(e.getMessage());
 				}
-			}			
-			System.out.println("Salaire (au format 'XXXX.XX€') :");
+			}
+			salarie.setNumSecu(secu);
+			System.out.println("Salaire (au format 'XXXX.XXï¿½') :");
 			erreursaisie = true;
 			String salaire = null;
 			while (erreursaisie) {
@@ -150,7 +171,8 @@ public class Saisie {
 					System.out.println(e.getMessage());
 				}
 			}
-			System.out.println("Le salarié est-il aussi client ? Répondre par oui ou non : ");
+			salarie.setSalaire(salaire);
+			System.out.println("Le salariï¿½ est-il aussi client ? Rï¿½pondre par oui ou non : ");
 			String reponse;
 			boolean nclient = false;
 			erreursaisie = true;
@@ -163,9 +185,10 @@ public class Saisie {
 					System.out.println(e.getMessage());
 				}
 			}
-			Salarie salarie = new Salarie(nom, prenom, adresse, ville, codepostal, secu, salaire, nclient);
+			salarie.setClient(nclient);
+			//Salarie salarie = new Salarie(nom, prenom, adresse, ville, codepostal, secu, salaire, nclient);
 			lp.add(salarie);
-		}
+		//}
 	}
 	
 	public static void saisirClients() {
@@ -183,10 +206,10 @@ public class Saisie {
 		}
 		
 		for (int i=0;i<nbClients;i++) {
-			System.out.println("Client n°"+(i+1));
+			System.out.println("Client nï¿½"+(i+1));
 			System.out.println("Nom :");
 			String nom = sc.nextLine();
-			System.out.println("Prénom :");
+			System.out.println("Prï¿½nom :");
 			String prenom = sc.nextLine();
 			System.out.println("Adresse :");
 			String adresse = sc.nextLine();
@@ -194,7 +217,7 @@ public class Saisie {
 			String ville = sc.nextLine();
 			System.out.println("Code postal :");
 			String codepostal = sc.nextLine();
-			System.out.println("Numéro client (doit être unique) :");
+			System.out.println("Numï¿½ro client (doit ï¿½tre unique) :");
 			String numclient = null;
 			List<String> numclientList = new ArrayList<String>();
 			erreursaisie = true;
@@ -207,7 +230,7 @@ public class Saisie {
 					System.out.println(e.getMessage());
 				}
 			}
-			System.out.println("Le client est-il aussi fournisseur ? Répondre par oui ou non : ");
+			System.out.println("Le client est-il aussi fournisseur ? Rï¿½pondre par oui ou non : ");
 			String reponse;
 			boolean nfournisseur = false;
 			erreursaisie = true;
@@ -240,10 +263,10 @@ public class Saisie {
 		}
 		
 		for (int i=0;i<nbFourn;i++) {
-			System.out.println("Fournisseur n°"+(i+1));
+			System.out.println("Fournisseur nï¿½"+(i+1));
 			System.out.println("Nom :");
 			String nom = sc.nextLine();
-			System.out.println("Prénom :");
+			System.out.println("Prï¿½nom :");
 			String prenom = sc.nextLine();
 			System.out.println("Adresse :");
 			String adresse = sc.nextLine();
@@ -251,7 +274,7 @@ public class Saisie {
 			String ville = sc.nextLine();
 			System.out.println("Code postal :");
 			String codepostal = sc.nextLine();
-			System.out.println("Numéro fournisseur (doit être unique) :");
+			System.out.println("Numï¿½ro fournisseur (doit ï¿½tre unique) :");
 			String numclient = null;
 			List<String> numclientList = new ArrayList<String>();
 			erreursaisie = true;
@@ -264,7 +287,7 @@ public class Saisie {
 					System.out.println(e.getMessage());
 				}
 			}
-			System.out.println("Le fournisseur est-il aussi client ? Répondre par oui ou non : ");
+			System.out.println("Le fournisseur est-il aussi client ? Rï¿½pondre par oui ou non : ");
 			String reponse;
 			boolean nclient = false;
 			erreursaisie = true;
@@ -284,11 +307,11 @@ public class Saisie {
 	
 	public static void saisirPatron() {
 		System.out.println("-------------------------------------------------");
-		System.out.println("/!\\ ATTENTION : Si vous avez déjà saisi un patron, celui-ci sera écrasé ! /!\\");
+		System.out.println("/!\\ ATTENTION : Si vous avez dï¿½jï¿½ saisi un patron, celui-ci sera ï¿½crasï¿½ ! /!\\");
 		System.out.println("Saisir un patron : ");
 		System.out.println("Nom :");
 		String nom = sc.nextLine();
-		System.out.println("Prénom :");
+		System.out.println("Prï¿½nom :");
 		String prenom = sc.nextLine();
 		System.out.println("Adresse :");
 		String adresse = sc.nextLine();
@@ -296,7 +319,7 @@ public class Saisie {
 		String ville = sc.nextLine();
 		System.out.println("Code postal :");
 		String codepostal = sc.nextLine();
-		System.out.println("Numéro de Sécurité Sociale (13 chiffres) :");
+		System.out.println("Numï¿½ro de Sï¿½curitï¿½ Sociale (13 chiffres) :");
 		boolean erreursaisie = true;
 		String secu = null;
 		while (erreursaisie) {
@@ -308,7 +331,7 @@ public class Saisie {
 				System.out.println(e.getMessage());
 			}
 		}
-		System.out.println("Salaire (au format 'XXXX.XX€') :");
+		System.out.println("Salaire (au format 'XXXX.XXï¿½') :");
 		erreursaisie = true;
 		String salaire = null;
 		while (erreursaisie) {
@@ -320,7 +343,7 @@ public class Saisie {
 				System.out.println(e.getMessage());
 			}
 		}
-		System.out.println("Le patron est-il aussi client ? Répondre par oui ou non : ");
+		System.out.println("Le patron est-il aussi client ? Rï¿½pondre par oui ou non : ");
 		String reponse;
 		boolean nclient = false;
 		erreursaisie = true;

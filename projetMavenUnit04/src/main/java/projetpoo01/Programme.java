@@ -22,6 +22,7 @@ import projetpoo01.affichages.Menu;
 import projetpoo01.gestionpersonnes.IClient;
 import projetpoo01.gestionpersonnes.Patron;
 import projetpoo01.gestionpersonnes.Personne;
+import projetpoo01.saisies.Saisie;
 
 public class Programme {
 	static List<Personne> lp = new ArrayList<Personne>();
@@ -34,6 +35,8 @@ public class Programme {
 	public static void main(String[] args) {
 		Menu.lp = lp;
 		Menu.sc = sc;
+		Saisie.lp = lp;
+		Saisie.sc = sc;
 		Affichage.lp = lp;
 		
 		try {
